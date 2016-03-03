@@ -3,8 +3,14 @@ class ClientsController < ApplicationController
   before_action :authenticate1, except:[:login, :create]
 
 	def create
-		@client = Client.create(create_params)
-		render json: @client
+		client = Client.new(create_params)
+    a = Client.find_by_email(params[:email])
+    client.save
+    if a && client.email == a.email
+      render json: {message: 'this email already exist'}
+    else
+      render json: client
+    end
 	end
 
 	def login
