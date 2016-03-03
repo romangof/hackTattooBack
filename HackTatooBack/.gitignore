@@ -7,6 +7,11 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore the default mysql database
+/config/database.yml
+/vagrant/
+
+
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
