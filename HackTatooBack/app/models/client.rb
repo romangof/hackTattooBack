@@ -6,6 +6,8 @@ class Client < ActiveRecord::Base
   validates :name, :email, :password_digest, :presence =>{is: true, :message =>"can't be blank spaces"} 
   validates :email, uniqueness: {case_sensitive: false, :message =>"this email alredy exist"}
 
+  accepts_nested_attributes_for :calendar
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { :with => VALID_EMAIL_REGEX , message: "mail format is invalid" }
 end

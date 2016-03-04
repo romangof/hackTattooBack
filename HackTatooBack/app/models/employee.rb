@@ -3,6 +3,7 @@ class Employee < ActiveRecord::Base
 	has_many :calendars
   has_many :clients, through: :calendars
 
+  accepts_nested_attributes_for :calendar
 
   validates :name, :email, :password_digest, :presence =>{is: true, :message =>"can't be blank spaces"} 
   validates :email, uniqueness: true#{case_sensitive: false, :message =>"this email alredy exist"}

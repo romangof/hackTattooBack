@@ -2,10 +2,13 @@ class EmployeesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :authenticate2, except:[:login, :create, :index, :create_admin]
 
-def index
-  employees = Employee.all
-  render json: employees 
-  
+def index #hasnt been proved yet
+  if Employee.find_by_id.admin == true
+    employees = Employee.all
+    render json: employees 
+  else
+    render json: "you aint admin nigga"
+  end
 end
 
   def create
@@ -18,6 +21,8 @@ end
       render json: employee
     end
   end
+
+  
 
   def create_admin
     admin = Employee.new(create_params)
