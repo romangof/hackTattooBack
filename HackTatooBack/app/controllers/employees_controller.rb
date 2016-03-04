@@ -1,6 +1,12 @@
 class EmployeesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  before_action :authenticate2, except:[:login, :create]
+  before_action :authenticate2, except:[:login, :create, :index, :create_admin]
+
+def index
+  employees = Employee.all
+  render json: employees 
+  
+end
 
   def create
     employee = Employee.new(create_params)
@@ -11,6 +17,13 @@ class EmployeesController < ApplicationController
     else
       render json: employee
     end
+  end
+
+  def create_admin
+    admin = Employee.new(create_params)
+    admin.admin = true
+    admin.save
+    render json: admin
   end
 
   def login
@@ -25,6 +38,10 @@ class EmployeesController < ApplicationController
   end
 
   protected
+
+ # def create_admin_params
+  #  params.permit(:name, :password, :email, :admin) 
+  #end
 
   def create_params
     params.permit(:name, :password, :email) 

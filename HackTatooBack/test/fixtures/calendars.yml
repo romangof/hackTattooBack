@@ -3,13 +3,15 @@
 one:
   client_id: 
   employee_id: 
-  picture: 2016-03-03 14:03:56
+  date: 2016-03-03 19:37:13
   accepted: false
   taken: false
+  picture: MyString
 
 two:
   client_id: 
   employee_id: 
-  picture: 2016-03-03 14:03:56
+  date: 2016-03-03 19:37:13
   accepted: false
   taken: false
+  picture: MyString

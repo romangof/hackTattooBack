@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303183356) do
+ActiveRecord::Schema.define(version: 20160304000713) do
 
   create_table "calendars", force: :cascade do |t|
     t.integer  "client_id",   limit: 4
     t.integer  "employee_id", limit: 4
-    t.datetime "picture"
+    t.datetime "date"
     t.boolean  "accepted"
     t.boolean  "taken"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.string   "picture",     limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "calendars", ["client_id"], name: "index_calendars_on_client_id", using: :btree
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160303183356) do
     t.string   "email",           limit: 255
     t.string   "password_digest", limit: 255
     t.string   "token",           limit: 255
+    t.boolean  "admin"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
